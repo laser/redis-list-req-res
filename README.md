@@ -7,7 +7,20 @@ Motivations
 -----------
 
 I'd like to replace HTTP as the transport mechanism for a SOA project, but
-preserve the request / response semantics.
+preserve the request / response semantics. I'd like to be able to write code
+that looked like this:
+
+```ruby
+class UsersController
+  def index
+    @users = UserService.get_all_users
+  end
+end
+```
+
+...and have the UserService client use Redis as a transport mechanism to
+communicate between the UserService implementation and consumer - without the
+consumer needing to know anything about HTTP, Redis, or whatever transport.
 
 How's it work?
 --------------
